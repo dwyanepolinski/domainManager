@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	{% load static %}
+	<link rel="shortcut icon" type="image/png" href="{% static "dmnManager/images/logo.png" %}"/>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="{% static "dmnManager/css/main.css" %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<title>Zarządzanie domenami</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">
+							<img alt="Brand Img" src="{% static "dmnManager/images/logo.png" %}">
+						</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<div class="nav navbar-nav navbar-left">
+							<p class="navbar-text" id="navbar-title">Zarządzanie domenami SOMEDOMAIN</p>
+						</div>
+						<div class="nav navbar-nav navbar-right">
+							<p class="navbar-text">Zalogowany jako {{ email }}</p>
+							<a href="{% url 'logout' %}"><button type="button" class="btn btn-default navbar-btn">Wyloguj</button></a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="row">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>	
+</body>
+</html>

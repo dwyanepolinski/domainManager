@@ -1,0 +1,104 @@
+#navbar-title{
+	color: black;
+	font-size: 16px;
+}
+
+.t-container{
+	height: 500px;
+	overflow-y: scroll;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+}
+
+.dmn-checkbox{
+	display: none;
+}
+
+#dmn-table .ui-selected{
+	background: #bed5e8;
+	color: white;
+}
+
+#dmn-table .ui-selecting{
+	background: #337ab7;
+	color: white;
+}
+
+#details-table{
+	width: 80%;
+}
+
+.edit-button{
+	border: none!important;
+}
+
+#details-table td{
+	padding: 4px;
+	border-bottom: 1px solid #c1c1c1;
+}
+
+.alert-info{
+	width: 80%;
+}
+
+i{
+	display: none;
+	visibility: hidden;
+}
+
+.tabbable{
+	margin-top: 50px;
+}
+
+.tabs-left > .nav-tabs {
+	border-bottom: 0;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+	display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+	display: block;
+}
+
+.tabs-left > .nav-tabs > li {
+	float: none;
+}
+
+.tabs-left > .nav-tabs > li > a{
+	min-width: 74px;
+	margin-right: 0;
+	margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+	float: left;
+	margin-right: 19px;
+	border-right: 1px solid #ddd;
+}
+
+.tabs-left > .nav-tabs > li > a {
+	margin-right: -1px;
+	-webkit-border-radius: 4px 0 0 4px;
+	-moz-border-radius: 4px 0 0 4px;
+	border-radius: 4px 0 0 4px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+	border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+	border-color: #ddd transparent #ddd #ddd;
+	*border-right-color: #ffffff;
+}
+
+#user-alert{
+	width: 100%;
+}

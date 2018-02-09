@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+  ServerName    www.{{ fullname }}
+  RedirectMatch 307 ^/(.*) http://{{ fullname }}/$1
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName   {{ fullname }}
+  DocumentRoot /www/{{ user }}
+  CustomLog    logs/{{ name }}_access.log common
+  ErrorLog     logs/{{ name }}_error.log
+  LogLevel error
+
+# SSLTAG
+
+  <FilesMatch \.php$>
+    SetHandler "proxy:unix:/var/run/php-{{ name }}.sock|fcgi://localhost/"
+  </FilesMatch>
+
+</VirtualHost>

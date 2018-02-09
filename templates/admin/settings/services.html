@@ -1,0 +1,36 @@
+<h3>Usługi</h3>
+<div class="alert alert-info" role="alert"><b>Ostatnia czynność:</b>
+	<div id="info-window" >{{ msg }}</div>
+</div>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Nazwa usługi</th>
+			<th>Operacje</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in services %}
+		<tr>
+			<td id="s{{ forloop.counter }}">{{ service.name }}</td>
+			<td>
+				<button type="button" class="btn btn-danger btn-xs settings-btn" onclick="delService({{ forloop.counter }});">
+				<span class="glyphicon glyphicon-remove">&nbsp;Usuń</span>
+			</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td colspan="2"><b>Dodaj nową usługę</b></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" id="new-service" class="form-control" placeholder="Nazwa usługi">
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary settings-btn" onclick="addService();">
+				Dodaj
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,8 @@
+# BEGINSSL
+  SSLEngine on
+  SSLProtocol all -SSLv2 -SSLv3
+  SSLCipherSuite HIGH:!aNULL:!MD5:!SEED:!IDEA
+  SSLCertificateFile "/opt/Certs/somecert.crt"
+  SSLCertificateKeyFile "/opt/Certs/somecert.key"
+  SSLCertificateChainFile "/opt/Certs/somecert.crt"
+# ENDSSL

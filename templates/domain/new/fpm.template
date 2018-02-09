@@ -1,0 +1,18 @@
+[{{ name }}]
+prefix = /www/{{ user }}
+listen = /var/run/php-{{ name }}.sock
+listen.allowed_clients = 127.0.0.1
+listen.owner = {{ user }}
+listen.group = group
+listen.mode = 0666
+user = {{ user }}
+group = group
+pm = dynamic
+pm.max_children = 50
+pm.start_servers = 2
+pm.min_spare_servers = 2
+pm.max_spare_servers = 4
+pm.max_requests = 500
+php_admin_value[open_basedir] = /var/php-upload:/var/php-session:/var/log:/tmp:/var/tmp:/group:/users:/www
+php_admin_value[error_reporting] = "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+php_admin_flag[display_errors] = Off

@@ -1,0 +1,31 @@
+<h3>Znaleziono następujące dane</h3>
+<form onsubmit="createDomain(); return false;">
+	<table class="table table-bordered">
+		{% for key, value in data.items %}
+		<tr class="new-dmn-tr">
+			<td class="key"><b>{{ key }}</b></td>
+			{% if key != "Właściciel" and key != "Katalog domeny" %}
+			<td class="val">
+				<input type="text" value="{{ value }}" class="form-control" {% if key == "Nazwa domeny" %} placeholder="Pole wymagane" required="" {% else %} placeholder="Pole opcjonalne" {% endif %}>
+			</td>
+			{% else %}
+			<td class="val">{{ value }}</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+		<tr class="new-dmn-tr">
+			<td class="key"><b>Wersja PHP</b></td>
+			<td class="val">
+				<select class="form-control">
+					{% for php in phps %}
+					<option>PHP&nbsp;{{ php.version }}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+	</table>
+	<button type="submit" class="btn btn-primary btn-block">Utwórz domenę</button>
+</form>
+<p id="add-domain-info">
+{{ info }}
+</p>

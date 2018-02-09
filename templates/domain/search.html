@@ -1,0 +1,12 @@
+{% if searchResult %}
+	{% for domain in searchResult %}
+		<tr>
+			<td>&nbsp;&nbsp;{{ domain }}</td>
+			<td>
+				<span class="label label-primary">PHP {{ domain.phpv }}</span>
+			</td>
+		</tr>
+	{% endfor %}
+{% else %}
+	<h3>&nbsp;&nbsp;Brak wyników :(</h3>
+{% endif %}

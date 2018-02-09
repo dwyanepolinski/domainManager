@@ -1,0 +1,39 @@
+{% if data %}
+<table id="details-table">
+	{% for key, value in data.items %}
+	<tr>
+		<td><b>{{ key }}</b></td>
+		<td id="{{ forloop.counter }}">{% if not value %}--Brak--{% else %}
+							{% if key == "Baza danych" %}Adres: somedomain.pl<br>Baza : {{ db_name }}<br>Użytkownicy:<br>`{{ db_name }}_user1` z hasłem {{ db.0 }}<br>`{{ db_name }}_user2` z hasłem {{ db.1 }}<br>`{{ db_name }}_user3` z hasłem {{ db.2 }}<br>{% else %}{{ value }}{% endif %}
+						{% endif %}</td>
+		<td class="edit-button">
+			{% if key in editable %}
+			<button type="button" class="btn btn-default btn-xs edit-btn" onclick="editButton('{{ key }}', '{{ forloop.counter }}', this);">
+				<span class="glyphicon glyphicon-edit">&nbsp;Edytuj</span>
+			</button>
+			{% endif %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+<hr>
+<div class="btn-group" role="group" aria-label="...">
+	<div class="btn-group" role="group">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Zmień wersję PHP
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			{% for php in phps %}
+			<li><a href="#" onclick="switchPhp('{{ name }}', this.text);" id="test">PHP&nbsp;{{ php.version }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	<button type="button" class="btn btn-default" onclick="https(this);">{% if https %}HTTP{% else %}HTTPS{% endif %}</button>
+	<button type="button" class="btn btn-default" onclick="database(this);">{% if db %}Usuń bazę{% else %}Dodaj bazę{% endif %}</button>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#delModal">Usuń domenę</button>
+	<hr>
+</div>
+{% else %}
+<p>Wybierz domenę z listy aby wyświetlić informacje.</p>
+{% endif %}

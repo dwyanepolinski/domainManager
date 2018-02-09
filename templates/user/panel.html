@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+
+{% block content %}
+{% if not domain %}
+<div class="alert alert-danger" role="alert">Brak uprawnień do przeglądania zasobów.</div>
+{% else %}
+<div class="col-md-2"></div>
+<div class="col-md-8">
+	<h2>Twoja domena</h2>
+
+	<div class="well">
+		{% csrf_token %}
+		<table class="table table-bordered">
+			<tbody>
+				{% for key, value in domain.items %}
+				<tr>
+					<td><b>{{ key }}</b></td>
+					<td id="{{ forloop.counter }}">{% if not value %}
+                                                        --Brak--
+                                                {% else %}
+                                                        {% if key == "Baza danych" %}
+                                                                Adres: db.somedomain.pl<br>
+                                                                Baza : {{ db_name }}<br>
+                                                                Użytkownicy:<br>
+                                                                `{{ db_name }}_user1` z hasłem {{ db.0 }}<br>
+                                                                `{{ db_name }}_user2` z hasłem {{ db.1 }}<br>
+                                                                `{{ db_name }}_user3` z hasłem {{ db.2 }}<br>
+                                                        {% else %}
+                                                                {{ value }}
+                                                        {% endif %}
+                                                {% endif %}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="dropup">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Zmień wersję PHP
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			{% for php in phps %}
+			<li><a href="#" onclick="switchPhp('{{ domainName }}', this.text);" id="test">PHP&nbsp;{{ php.version }}</a></li>
+			{% endfor %}
+		</ul>
+		</div>
+	</div>
+	<div class="alert alert-info" id="user-alert">
+		Tutaj możesz zmienić wersję PHP dla domeny.
+	</div>
+	<div class="col-md-2"></div>
+</div>
+{% load static %}
+<script src="{% static "dmnManager/js/user.js" %}"></script>
+{% endif %}
+{% endblock %}

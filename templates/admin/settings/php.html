@@ -1,0 +1,43 @@
+<h3>Wersje PHP</h3>
+<div class="alert alert-info" role="alert"><b>Ostatnia czynność:</b>
+	<div id="info-window" >{{ msg }}</div>
+</div>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Wersja PHP</th>
+			<th>Ścieżka do katalogu php-fpm.d</th>
+			<th>Operacje</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for php in data %}
+		<tr>
+			<td id="v{{ forloop.counter }}">{{ php.version }}</td>
+			<td id="p{{ forloop.counter }}">{{ php.fpmPath }}</td>
+			<td>
+				<button type="button" class="btn btn-default btn-xs settings-btn" onclick="phpList(this, {{ forloop.counter }});">
+				<span class="glyphicon glyphicon-edit">&nbsp;Edytuj</span>
+				<button type="button" class="btn btn-danger btn-xs settings-btn" onclick="delPhp({{ forloop.counter }});">
+				<span class="glyphicon glyphicon-remove">&nbsp;Usuń</span>
+			</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td colspan="3"><b>Dodaj nową wersję PHP</b></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" id="new-php-v" class="form-control" placeholder="Wersja">
+			</td>
+			<td>
+				<input type="text" id="new-php-p" class="form-control" placeholder="Ścieżka do php-fpm.d">
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary settings-btn" onclick="addPhp();">
+				Dodaj
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

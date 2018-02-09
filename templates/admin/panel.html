@@ -1,0 +1,122 @@
+{% extends "index.html" %}
+
+{% block content %}
+<ul class="nav nav-tabs">
+	<li class="active"><a data-toggle="tab" href="#tab1">Panel główny</a>
+	</li>
+	<li><a data-toggle="tab" href="#tab2">Ustawienia</a>
+	</li>
+</ul>
+
+<div id="tab-content" class="tab-content">
+	<div id="tab1" class="tab-pane fade in active">
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Lista domen UMK</h3>
+				{% csrf_token %}
+				<input type="text" class="form-control" placeholder="Szukaj domeny" id="dmn-browser">
+				<div class="t-container">
+					<table class="table" id="dmn-table">
+						<thead>
+							<tr>
+								<th>Domena</th>
+								<th>Wersja PHP</th>
+							</tr>
+						</thead>
+						<tbody id="search-result">
+						</tbody>
+					</table>
+				</div>
+				<div class="btn-group btn-group-justified" role="group" aria-label="...">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">Dodaj domenę</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<h3>Informacje</h3>
+				<div class="well" id="dmn-details">
+					<p>Wybierz domenę z listy aby wyświetlić informacje.</p>
+				</div>
+				<div class="alert alert-info" role="alert"><b>Ostatnia czynność:</b>
+					<div id="info-window" >Tu pojawi się ostatnia wykonana czynność.</div>
+				</div>
+
+				<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-sm" role="dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Usunąć domenę?</h4>
+							</div>
+							<div class="modal-body">
+								Czy na pewno? Usunięcie domeny jest nieodwracalne!
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cofnij</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteDomain();">Usuń</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Nowa domena</h4>
+							</div>
+							<div class="modal-body">
+								<form onsubmit="ldap(); return false;">
+									<div class="form-group row">
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="get-user-data" aria-describedby="emailHelp" required placeholder="Identyfikator konta">
+											<small id="emailHelp" class="form-text text-muted">Podaj identyfikator konta dla domeny, aby pobrać informacje z LDAP.</small>
+										</div>
+										<div class="col-sm-4">
+											<button type="submit" class="btn btn-primary" id="load" onclick="loading();">
+												Szukaj w LDAP
+											</button>
+											<img src="" alt="">
+										</div>
+									</div>
+								</form>
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8" id="ldap-result"></div>
+									<div class="col-sm-2"></div>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="tab2" class="tab-pane fade">
+		<div class="tabbable tabs-left">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#subtab1" data-toggle="tab">PHP FPM</a></li>
+				<li><a href="#subtab2" data-toggle="tab">Vhost.conf</a></li>
+				<li><a href="#subtab3" data-toggle="tab">Usługi</a></li>
+			</ul>
+			<div class="tab-content col-md-10">
+				<div class="tab-pane active" id="subtab1">
+					</div>
+					<div class="tab-pane" id="subtab2">
+					</div>
+					<div class="tab-pane" id="subtab3">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% load static %}
+	<script src="{% static "dmnManager/js/admin.js" %}"></script>
+	{% endblock %}
